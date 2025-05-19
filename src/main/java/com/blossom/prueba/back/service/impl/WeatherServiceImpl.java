@@ -9,10 +9,14 @@ import com.blossom.prueba.back.util.enums.StatusEnum;
 import com.blossom.prueba.back.util.exceptions.NoDataFountException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class WeatherServiceImpl implements WeatherService {
+
+    private static final String ONLY_LETTER_REGEX = "^[A-Za-zÀ-ÿ\\s]+$";
 
     private final WeatherRepository weatherRepository;
     private final AuditService auditService;
@@ -24,6 +28,12 @@ public class WeatherServiceImpl implements WeatherService {
 
     @Override
     public WeatherDTO getWeatherIfo(String city) throws NoDataFountException, JsonProcessingException {
+
+        if (!city.matches(ONLY_LETTER_REGEX)) {
+            auditService.saveAudit(city, StatusEnum.FAIL.getDescription(), null, "The city is not valid.");
+            throw new IllegalArgumentException("The city is not valid");
+        }
+
         WeatherEntity entity = weatherRepository.findByCity(city).orElse(null);
         if (entity != null) {
             ObjectMapper mapper = new ObjectMapper();
