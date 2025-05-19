@@ -35,6 +35,7 @@ public class WeatherController {
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = WeatherDTO.class))),
             @ApiResponse(responseCode = "204", description = "No information found for the city"),
+            @ApiResponse(responseCode = "400", description = "City name is not valid"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping("/{city}")
