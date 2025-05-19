@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WeatherController {
 
     private final WeatherService weatherService;
+    private static final String ONLY_LETTER_REGEX = "^[A-Za-zÀ-ÿ\\s]+$";
 
     public WeatherController(WeatherService weatherService) {
         this.weatherService = weatherService;
@@ -42,6 +43,12 @@ public class WeatherController {
             @Parameter(description = "City name", required = true)
             @PathVariable String city) {
         try {
+            if (!city.matches(ONLY_LETTER_REGEX)) {
+                log.warn("City name {} is not valid", city);
+                return ResponseEntity
+                        .status(HttpStatus.BAD_REQUEST)
+                        .body(null);
+            }
             log.info("Execute getCityInformation for city: {}", city);
             WeatherDTO response = weatherService.getWeatherIfo(city);
             return ResponseEntity.ok(response);
