@@ -86,7 +86,7 @@ mvn spring-boot:run
 
 ## 🛡 API Key Protection
 
-If `ApiKeyFilter` is active, include the following header in your requests:
+`ApiKeyFilter` is active, include the following header in your requests:
 
 ```
 X-API-KEY: your-api-key
