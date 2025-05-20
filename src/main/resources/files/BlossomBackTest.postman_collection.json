@@ -1,0 +1,36 @@
+{
+	"info": {
+		"_postman_id": "592cec79-e37e-41b9-a6b8-6695cd5f9ab7",
+		"name": "BlossomBackTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34125460"
+	},
+	"item": [
+		{
+			"name": "getCityInformation",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "Ymxvc3NvbVRlc3QxOTA1MjAyNQ==",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/api/weather/Medellín",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"weather",
+						"Medellín"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
