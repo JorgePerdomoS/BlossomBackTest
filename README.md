@@ -97,3 +97,13 @@ X-API-KEY: your-api-key
 For questions or feedback, open an issue or contact the maintainer.
 
 ---
+
+## 📂 Notes
+
+You can find additional files in the resources/files directory:
+
+✅ A PDF with the answers to the design and Java-related questions
+
+✅ A Postman collection to test the service
+
+---
